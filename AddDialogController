@@ -1,0 +1,29 @@
+import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+public class AddDialogController {
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private TextField phoneField;
+
+    @FXML
+    protected void onOkClick() {
+        String name = nameField.getText();
+        String phone = phoneField.getText();
+
+        System.out.println("ПІП: " + name + ", Телефон: " + phone);
+
+        Stage stage = (Stage) nameField.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    protected void onCancelClick() {
+        Stage stage = (Stage) phoneField.getScene().getWindow();
+        stage.close();
+    }
+}
