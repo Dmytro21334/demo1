@@ -12,12 +12,10 @@
         <Label minWidth="60" text="ПІП" />
         <TextField fx:id="nameField" HBox.hgrow="ALWAYS" />
     </HBox>
-
     <HBox spacing="10">
         <Label minWidth="60" text="Телефон" />
         <TextField fx:id="phoneField" HBox.hgrow="ALWAYS" />
     </HBox>
-
     <HBox alignment="CENTER_RIGHT" spacing="10">
         <Button onAction="#onOkClick" text="Ок" />
         <Button onAction="#onCancelClick" text="Відміна" />
