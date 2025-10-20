@@ -1,0 +1,31 @@
+package org.example.demo1;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+public class OtherLabsController {
+
+    @FXML
+    protected void onChangeImageClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("image-changed.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage dialog = new Stage();
+            dialog.setTitle("Зображення змінено");
+            dialog.setResizable(false);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.setScene(scene);
+            dialog.showAndWait();
+
+            Stage current = (Stage) scene.getWindow();
+            current.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
