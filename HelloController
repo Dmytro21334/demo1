@@ -58,4 +58,28 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    protected void onOtherLabsClick() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/other-labs.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage dialog = new Stage();
+            dialog.setTitle("Other Labs");
+            dialog.setResizable(false);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(btnAdd.getScene().getWindow());
+            dialog.setScene(scene);
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void onExitClick() {
+        Stage stage = (Stage) btnAdd.getScene().getWindow();
+        stage.close();
+    }
 }
