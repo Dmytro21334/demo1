@@ -28,4 +28,8 @@ public class AddDialogController {
         Stage stage = (Stage) phoneField.getScene().getWindow();
         stage.close();
     }
+
+    public Person getNewPerson() {
+        return null;
+    }
 }
