@@ -21,3 +21,4 @@
             </ImageView>
     <Button text="Змінити" onAction="#onChangeImageClick" />
 </VBox>
+
