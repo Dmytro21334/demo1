@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="org.example.demo1.EditController"
+      spacing="10" alignment="CENTER" style="-fx-padding: 20;">
+
+    <Label text="Редагування даних" style="-fx-font-size:16px;-fx-font-weight:bold;" />
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="ПІП:" minWidth="80" />
+        <TextField fx:id="txtPip" prefWidth="200" minHeight="30" />
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Телефон:" minWidth="80" />
+        <TextField fx:id="txtPhone" prefWidth="200" minHeight="30" />
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Зберегти" onAction="#actionSave" />
+        <Button text="Відмінити" onAction="#actionClose" />
+    </HBox>
+</VBox>
