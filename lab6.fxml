@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.example.demo1.OtherLabsController2"
+      prefWidth="900" prefHeight="400">
+
+    <children>
+
+        <AnchorPane prefHeight="400" prefWidth="900">
+
+            <children>
+
+
+                <AnchorPane layoutX="0" prefWidth="225" prefHeight="400">
+                    <children>
+
+                        <Label layoutX="59" layoutY="33" text="CheckBox">
+                            <font>
+                                <Font name="System Bold Italic" size="18" />
+                            </font>
+                        </Label>
+
+                        <Label layoutX="32" layoutY="69" prefWidth="179" wrapText="true"
+                               text="Властивості людино-машинного інтерфейсу:" />
+
+                        <CheckBox fx:id="ChBPogod" layoutX="32" layoutY="136"
+                                  mnemonicParsing="false" text="Погодженість"/>
+
+                        <CheckBox fx:id="ChBDruz" layoutX="31" layoutY="162"
+                                  mnemonicParsing="false" text="Дружність"/>
+
+                        <CheckBox fx:id="ChBGnuch" layoutX="31" layoutY="191"
+                                  mnemonicParsing="false" text="Гнучкість"/>
+
+                        <CheckBox fx:id="ChBSklad" layoutX="31" layoutY="218"
+                                  mnemonicParsing="false" text="Складність"/>
+
+                        <!-- НОВА КНОПКА ВІДПОВІСТИ -->
+                        <Button layoutX="66" layoutY="250" text="Відповісти"
+                                onAction="#checkBoxAnswer"/>
+
+                        <Label fx:id="lbITrueAnswer" layoutX="32" layoutY="280" text="" />
+                    </children>
+                </AnchorPane>
+
+
+                <AnchorPane layoutX="225" prefWidth="225" prefHeight="400">
+                    <children>
+
+                        <Label layoutX="59" layoutY="33" text="ChoiceBox">
+                            <font><Font name="System Bold Italic" size="18" /></font>
+                        </Label>
+
+                        <Label layoutX="32" layoutY="69" wrapText="true" prefWidth="170"
+                               text="Файл sample.fxml відповідає за логіку програми." />
+
+                        <ChoiceBox fx:id="choiceB" layoutX="32" layoutY="135" prefWidth="150" />
+
+                        <Button layoutX="66" layoutY="175" text="Відповісти"
+                                onAction="#choiceBoxAnswer" />
+
+                        <Label fx:id="lblAnwerChoice" layoutX="32" layoutY="217" text="" />
+                    </children>
+                </AnchorPane>
+
+
+                <AnchorPane layoutX="450" prefWidth="225" prefHeight="400">
+                    <children>
+
+                        <Label layoutX="59" layoutY="33" text="ComboBox">
+                            <font><Font name="System Bold Italic" size="18" /></font>
+                        </Label>
+
+                        <Label layoutX="32" layoutY="69" wrapText="true" prefWidth="170"
+                               text="Це контейнер, який має п'ять областей: верхня, нижня, ліва, права та центральна." />
+
+                        <ComboBox fx:id="comboBox" layoutX="32" layoutY="155" prefWidth="150" />
+
+                        <Button layoutX="66" layoutY="195" text="Відповісти"
+                                onAction="#comboBoxPressed" />
+
+                        <Label fx:id="lblAnwerCombo" layoutX="32" layoutY="245" text="" />
+                    </children>
+                </AnchorPane>
+
+
+                <AnchorPane layoutX="675" prefWidth="225" prefHeight="400">
+                    <children>
+
+                        <Label layoutX="59" layoutY="33" text="RadioButton">
+                            <font><Font name="System Bold Italic" size="18" /></font>
+                        </Label>
+
+                        <Label layoutX="32" layoutY="61" wrapText="true" prefWidth="170"
+                               text="У якому меню SceneBuilder можна змінити загальні властивості компонента?" />
+
+
+                        <RadioButton fx:id="radioProp" layoutX="32" layoutY="175"
+                                     text="Properties" onAction="#RadioAnswer" />
+
+                        <RadioButton fx:id="radioLay" layoutX="32" layoutY="200"
+                                     text="Layout" onAction="#RadioAnswer" />
+
+                        <RadioButton fx:id="radioCode" layoutX="32" layoutY="225"
+                                     text="Code" onAction="#RadioAnswer" />
+
+                        <RadioButton fx:id="radioHier" layoutX="32" layoutY="250"
+                                     text="Hierarchy" onAction="#RadioAnswer" />
+
+                        <Label fx:id="lblRadio" layoutX="32" layoutY="290" text="" />
+                    </children>
+                </AnchorPane>
+
+            </children>
+            <Button layoutX="400" layoutY="350" text="Показати результат" onAction="#showResult"/>
+        </AnchorPane>
+
+    </children>
+
+</VBox>
