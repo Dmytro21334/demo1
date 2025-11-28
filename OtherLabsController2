@@ -1,0 +1,131 @@
+package org.example.demo1;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+
+public class OtherLabsController2 {
+
+    @FXML private CheckBox ChBPogod;
+
+    @FXML private CheckBox ChBDruz;
+
+    @FXML private CheckBox ChBGnuch;
+
+    @FXML private CheckBox ChBSklad;
+
+    @FXML private Label lbITrueAnswer;
+
+    @FXML private ChoiceBox<String> choiceB;
+
+    @FXML private Label lblAnwerChoice;
+
+    @FXML private ComboBox<String> comboBox;
+
+    @FXML private Label lblAnwerCombo;
+
+    @FXML private RadioButton radioLay;
+    @FXML private RadioButton radioCode;
+    @FXML private RadioButton radioHier;
+    @FXML private RadioButton radioProp;
+    @FXML private Label lblRadio;
+
+    private ToggleGroup radiotoggleGroup;
+
+    private int score = 0;
+
+    @FXML
+    public void initialize() {
+
+        lbITrueAnswer.setText("");
+
+        lblAnwerChoice.setText("");
+        choiceB.getItems().addAll("Правильно", "Неправильно");
+
+        lblAnwerCombo.setText("");
+        comboBox.getItems().addAll("BorderPane", "AnchorPane", "VBox", "HBox");
+
+        lblRadio.setText("");
+
+        radiotoggleGroup = new ToggleGroup();
+        radioProp.setToggleGroup(radiotoggleGroup);
+        radioLay.setToggleGroup(radiotoggleGroup);
+        radioCode.setToggleGroup(radiotoggleGroup);
+        radioHier.setToggleGroup(radiotoggleGroup);
+    }
+
+    @FXML
+    void checkBoxAnswer(ActionEvent event) {
+        String answer = "Ваша відповідь:";
+
+        boolean ok1 = ChBPogod.isSelected();
+        boolean ok2 = ChBDruz.isSelected();
+        boolean ok3 = ChBGnuch.isSelected();
+        boolean ok4 = ChBSklad.isSelected();
+
+        answer += ok1 ? "\nПогодженість" : "";
+        answer += ok2 ? "\nДружність" : "";
+        answer += ok3 ? "\nГнучкість" : "";
+        answer += ok4 ? "\nСкладність (неправильно)" : "";
+
+        if (ok1 && ok2 && ok3 && !ok4) {
+            lbITrueAnswer.setText(answer + "\n✔ Правильно!");
+            score++;
+        } else {
+            lbITrueAnswer.setText(answer + "\n✘ Неправильно!");
+        }
+    }
+
+    @FXML
+    void choiceBoxAnswer(ActionEvent event) {
+        if (choiceB.getValue() != null) {
+
+            if (choiceB.getValue().equals("Неправильно")) {
+                lblAnwerChoice.setText("✔ Правильно");
+                score++;
+            } else {
+                lblAnwerChoice.setText("✘ Неправильно");
+            }
+        }
+    }
+
+    @FXML
+    void comboBoxPressed(ActionEvent event) {
+        if (comboBox.getValue() != null) {
+
+            if (comboBox.getValue().equals("BorderPane")) {
+                lblAnwerCombo.setText("✔ Правильно!");
+                score++;
+            } else {
+                lblAnwerCombo.setText("✘ Неправильно!");
+            }
+        }
+    }
+
+    @FXML
+    void RadioAnswer(ActionEvent event) {
+        if (radiotoggleGroup.getSelectedToggle() == null)
+            return;
+
+        RadioButton selected = (RadioButton) radiotoggleGroup.getSelectedToggle();
+
+        if (selected == radioProp) {
+            lblRadio.setText("✔ Правильно!");
+            score++;
+        } else {
+            lblRadio.setText("✘ Неправильно!");
+        }
+    }
+
+    @FXML
+    void showResult() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Результат");
+        alert.setHeaderText("Підсумок виконання");
+        alert.setContentText("Кількість правильних відповідей: " + score + " із 4");
+        alert.showAndWait();
+    }
+}
+
+
+
