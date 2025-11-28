@@ -52,9 +52,11 @@
         <AnchorPane layoutY="500.0" prefHeight="100.0" prefWidth="600.0">
             <children>
                 <Label fx:id="LabelCount" layoutX="31.0" layoutY="53.0" text="Кількість записів:" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="30.0" />
-                <Button fx:id="btnOtherLabs" text="Other Labs" prefWidth="140" layoutX="30" layoutY="10" onAction="#onOtherLabsClick" />
+                <Button layoutX="31" layoutY="10" text="Other Labs" onAction="#onOtherLabsClick"/>
+                <Button layoutX="130" layoutY="10" text="Other Labs 2" onAction="#onOtherLabsClick2"/>
                 <Button fx:id="btnExit" text="Вихід" prefWidth="140" layoutX="430" layoutY="10" onAction="#onExitClick" />
             </children>
         </AnchorPane>
     </children>
 </AnchorPane>
+
