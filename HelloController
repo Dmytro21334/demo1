@@ -195,6 +195,24 @@ public class HelloController {
     }
 
     @FXML
+    protected void onOtherLabsClick3() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/lab7.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage dialog = new Stage();
+            dialog.setTitle("Other Labs3");
+            dialog.setResizable(false);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(btnAdd.getScene().getWindow());
+            dialog.setScene(scene);
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     protected void onExitClick() {
         Stage stage = (Stage) btnAdd.getScene().getWindow();
         stage.close();
