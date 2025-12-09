@@ -1,0 +1,154 @@
+package org.example.demo1;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+import javafx.util.Duration;
+
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+
+public class AudioController implements Initializable {
+
+    @FXML
+    private MediaView mediaView;
+
+    @FXML
+    private Slider volume;
+
+    @FXML
+    private ProgressBar audioProgress;
+
+    @FXML
+    private Label label_audio;
+
+    @FXML
+    private Label timeLabel;
+
+    private ArrayList<File> songs;
+    private int songNumber = 0;
+
+    private MediaPlayer mediaPlayer;
+
+    @FXML
+    private ImageView coverImage;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        songs = new ArrayList<>();
+
+        URL resource = getClass().getResource("/org/example/demo1/music");
+
+        if (resource == null) {
+            System.out.println("Папку 'music' не знайдено у resources!");
+            return;
+        }
+
+        File folder;
+        try {
+            folder = new File(resource.toURI());
+        } catch (Exception e) {
+            System.out.println("Не вдалося отримати доступ до папки music");
+            e.printStackTrace();
+            return;
+        }
+
+        File[] files = folder.listFiles();
+        if (files == null || files.length == 0) {
+            System.out.println("Папка music порожня!");
+            return;
+        }
+
+        for (File f : files) {
+            String name = f.getName().toLowerCase();
+            if (name.endsWith(".mp3") || name.endsWith(".wav")) {
+                songs.add(f);
+            }
+        }
+
+        if (songs.isEmpty()) {
+            System.out.println("У папці music нема файлів .mp3 або .wav!");
+            return;
+        }
+
+        songs.sort((a, b) -> a.getName().compareToIgnoreCase(b.getName()));
+
+        loadSong();
+
+        volume.valueProperty().addListener((obs, oldVal, newVal) ->
+                mediaPlayer.setVolume(newVal.doubleValue() / 100)
+        );
+    }
+
+    private void loadSong() {
+        if (mediaPlayer != null)
+            mediaPlayer.stop();
+
+        Media media = new Media(songs.get(songNumber).toURI().toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaView.setMediaPlayer(mediaPlayer);
+
+        label_audio.setText(songs.get(songNumber).getName());
+
+        audioProgress.setProgress(0);
+
+        mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
+            Duration total = mediaPlayer.getTotalDuration();
+            if (total != null && !total.isUnknown()) {
+                double progress = newTime.toMillis() / total.toMillis();
+                audioProgress.setProgress(progress);
+                timeLabel.setText(formatTime(newTime, total));
+            }
+        });
+
+        mediaPlayer.setOnEndOfMedia(() -> next(null));
+    }
+
+    private String formatTime(Duration current, Duration total) {
+        int cur = (int) current.toSeconds();
+        int tot = (int) total.toSeconds();
+
+        return String.format("%02d:%02d / %02d:%02d",
+                cur / 60, cur % 60,
+                tot / 60, tot % 60);
+    }
+
+    @FXML
+    void play(ActionEvent event) {
+        mediaPlayer.play();
+    }
+
+    @FXML
+    void pause(ActionEvent event) {
+        mediaPlayer.pause();
+    }
+
+    @FXML
+    void reset(ActionEvent event) {
+        mediaPlayer.seek(Duration.ZERO);
+        mediaPlayer.play();
+    }
+
+    @FXML
+    void next(ActionEvent event) {
+        songNumber = (songNumber + 1) % songs.size();
+        loadSong();
+        mediaPlayer.play();
+    }
+
+    @FXML
+    void previous(ActionEvent event) {
+        songNumber = (songNumber - 1 + songs.size()) % songs.size();
+        loadSong();
+        mediaPlayer.play();
+    }
+}
