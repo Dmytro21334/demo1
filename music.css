@@ -1,0 +1,47 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, #203a43, #2c5364);
+}
+
+#label_audio {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+#timeLabel {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
+.progress-bar {
+    -fx-accent: white;
+}
+
+.slider .track {
+    -fx-background-color: white;
+}
+
+.slider .thumb {
+    -fx-background-color: white;
+    -fx-border-radius: 10;
+    -fx-border-color: white;
+}
+
+.button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 16px;
+    -fx-padding: 8 20 8 20;
+}
+
+.button:hover {
+    -fx-background-color: rgba(255,255,255,0.2);
+}
+
+.button:pressed {
+    -fx-background-color: rgba(255,255,255,0.4);
+}
