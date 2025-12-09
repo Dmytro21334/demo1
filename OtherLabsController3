@@ -1,0 +1,126 @@
+package org.example.demo1;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class OtherLabsController3 {
+
+    @FXML
+    private Label dateLabel;
+
+    @FXML
+    private DatePicker myDatePicker;
+
+    @FXML
+    private ColorPicker myColorPicker;
+
+    @FXML
+    private Slider mySlider;
+
+    @FXML
+    private Label SlyderBall;
+
+    @FXML
+    private AnchorPane scenePane;
+
+    @FXML
+    private Button FileChooser;
+
+    @FXML
+    private Button MediaView;
+
+    @FXML
+    private Button MediaView2;
+
+    @FXML
+    void getDate(ActionEvent event) {
+        LocalDate myDate = myDatePicker.getValue();
+        if (myDate != null) {
+            String dateFormatter = myDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            dateLabel.setText(dateFormatter);
+        }
+    }
+
+    @FXML
+    void changeColor(ActionEvent event) {
+        Color color = myColorPicker.getValue();
+        scenePane.setBackground(new Background(new BackgroundFill(color, null, null)));
+    }
+
+    @FXML
+    protected void FileChooser() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/filechooser.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            Stage dialog = new Stage();
+            dialog.setTitle("Other Labs");
+            dialog.setResizable(false);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(FileChooser.getScene().getWindow());
+            dialog.setScene(scene);
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    protected void MediaView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/mediaview.fxml"));
+            Scene scene = new Scene(loader.load());
+            scene.getStylesheets().add(getClass().getResource("/org/example/demo1/music.css").toExternalForm());
+
+            Stage dialog = new Stage();
+            dialog.setTitle("Other Labs");
+            dialog.setResizable(false);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(MediaView.getScene().getWindow());
+            dialog.setScene(scene);
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    public void initialize() {
+        mySlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            int score = newValue.intValue();
+            SlyderBall.setText("Ваша оцінка: " + score + " балів");
+        });
+    }
+
+    @FXML
+    protected void MediaView2() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/demo1/mediaview2.fxml"));
+            Scene scene = new Scene(loader.load());
+            getClass().getResource("/org/example/demo1/video.mp4");
+
+            Stage dialog = new Stage();
+            dialog.setTitle("Other Labs");
+            dialog.setResizable(false);
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(MediaView2.getScene().getWindow());
+            dialog.setScene(scene);
+            dialog.showAndWait();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
